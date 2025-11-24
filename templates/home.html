@@ -1,269 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Institute - Home</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    header {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-links {
-      display: flex;
-      gap: 30px;
-    }
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      transition: color 0.3s ease;
-    }
-    .nav-links a:hover {
-      color: #ffdd57;
-    }
-    .login-btn {
-      background-color: white;
-      color: #007bff;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .manage-btn {
-      background-color: rgb(255, 255, 255);
-      color: #000000;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .manage-btn:hover {
-      background-color: #0056b3;
-      color: white;
-    }
-    .hero {
-      background: linear-gradient(to right, #007bff, #0056b3);
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-    }
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-    .btn-explore {
-      padding: 12px 24px;
-      background: white;
-      color: #007bff;
-      font-weight: bold;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    .login-btn:hover {
-      background-color: #0056b3;
-      color: white;
-    }
-    .featured-courses {
-      padding: 60px 30px;
-      background: #f5f5f5;
-      text-align: center;
-    }
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-    .course-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-    }
-    .course-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: contain;
-      border-radius: 8px;
-      border: 2px solid #000000;
-    }
+{% extends "base.html" %}
+{% block title %}Institute - Home{% endblock %}
 
-    .course-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn-enroll {
-      display: inline-block;
-      margin-top: 10px;
-      background: #007bff;
-      color: white;
-      padding: 8px 16px;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-    .enroll-btn:hover {
-      background-color: #0056b3;
-    }
-    .why-us {
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .highlights {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .highlights div {
-      background: #e7f1ff;
-      padding: 20px;
-      border-radius: 8px;
-      width: 200px;
-    }
-
-    .testimonials {
-      background: #f0f0f0;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .testimonial {
-      max-width: 600px;
-      margin: 0 auto;
-      font-style: italic;
-    }
-
-    .cta {
-      background: #007bff;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .cta a {
-      margin-top: 10px;
-      display: inline-block;
-      background: white;
-      color: #007bff;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-    .flash-message {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #d1e7dd;  /* Light green */
-      color: #0f5132;             /* Dark green text */
-      padding: 10px 20px;
-      width: max-content;
-      max-width: 80%;
-      border-radius: 6px;
-      text-align: center;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      z-index: 9999;
-      animation: dropIn 0.3s ease-out;
-    }
-    .auth-buttons {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    /* Drop-in animation */
-    @keyframes dropIn {
-      from {
-        transform: translate(-50%, -20px);
-        opacity: 0;
-      }
-      to {
-        transform: translate(-50%, 0);
-        opacity: 1;
-      }
-    }
-  </style>
-</head>
-<body>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="flash-message">
-        {% for message in messages %}
-          <p>{{ message }}</p>
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endwith %}
-  <header>
-    <a href="/" style="font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 700; text-decoration: none; color: white;">
-      <span style="color: #00ffff;">!</span>nstitute
-    </a>
-    <nav class="nav-links">
-      <a href="/">Home</a>
-      <a href="/courses">Courses</a>
-    </nav>
-  <div class="auth-buttons">
-    {% if 'user' in session %}
-      {% if session.get('is_admin') == 1 %}
-        <a href="{{ url_for('admin') }}" class="manage-btn">Manage</a>
-      {% endif %}
-      <a href="{{ url_for('logout') }}" class="login-btn">Logout</a>
-    {% else %}
-      <a href="{{ url_for('login') }}" class="login-btn">Login</a>
-    {% endif %}
-  </div>
-  </header>
-
+{% block content %}
   <section class="hero">
     <h1>Build Your Future With Us</h1>
     <p>Join 10,000+ students in learning the most in-demand skills online.</p>
-    <a href="/courses" class="btn-explore">Explore Courses</a>  
+    <a href="/courses" class="btn-explore">Explore Courses</a>
   </section>
 
-  <section class="featured-courses">
+  <section class="featured-coursess">
     <h2>Our Most Popular Courses</h2>
-    <div class="course-grid">
-      <div class="course-card">
+    <div class="course-gridd">
+      <div class="course-cardd">
         <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt="Python" />
         <h3>Python Programming</h3>
         <p>Start coding from scratch with hands-on projects.</p>
-        <a href="/form" class="btn-enroll">Enroll Now</a>
+        <a href="/form" class="btn-enrolll">Enroll Now</a>
       </div>
-      <div class="course-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" height="60" />
+
+      <div class="course-cardd">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" />
         <h3>Web Development</h3>
         <p>Create stunning websites using HTML, CSS & JS.</p>
-        <a href="/form" class="btn-enroll">Enroll Now</a>
+        <a href="/form" class="btn-enrolll">Enroll Now</a>
       </div>
-      <div class="course-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java" height="60" />
+
+      <div class="course-cardd">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java" />
         <h3>Core Java</h3>
         <p>Master OOPs with practical Java development.</p>
-        <a href="/form" class="btn-enroll">Enroll Now</a>
+        <a href="/form" class="btn-enrolll">Enroll Now</a>
       </div>
-      <div class="course-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" alt="MySQL" height="60" />
+
+      <div class="course-cardd">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" alt="MySQL" />
         <h3>MySQL</h3>
         <p>Learn how to manage and query real-world databases.</p>
-        <a href="/form" class="btn-enroll">Enroll Now</a>
+        <a href="/form" class="btn-enrolll">Enroll Now</a>
       </div>
     </div>
   </section>
@@ -290,14 +63,4 @@
     <h2>Ready to start learning?</h2>
     <a href="/register">Create an Account</a>
   </section>
-</body>
-<script>
-  setTimeout(function () {
-    const flash = document.querySelector('.flash-message');
-    if (flash) {
-      flash.style.display = 'none';
-    }
-  }, 3000); // Hides after 3 seconds
-</script>
-
-</html>
+{% endblock %}

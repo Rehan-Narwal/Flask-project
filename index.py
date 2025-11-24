@@ -13,7 +13,7 @@ app.debug = True
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",         # leave empty if you're using default XAMPP config
+    password="",         # leave empty if using default XAMPP config
     database="institute" # the name of your database
 )
 
@@ -110,10 +110,6 @@ def form():
         if len(email) < 5:
             error['email'] = "*email must be greater than 5*"
             
-        #if (course) != "Python Programming" or "Java Development" or "C Programming" or "Web Development" or "PHP" or "Java Script" or "C++" or "MySQL":
-        #    d = "Enter Valid Course as written"
-        #    error.append(d)
-
         if error:
             return render_template('form.html',error=error)
         

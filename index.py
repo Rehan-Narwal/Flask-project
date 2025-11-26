@@ -14,7 +14,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",         # leave empty if using default XAMPP config
-    database="institute" # the name of your database
+    database="institute" # the name of my database
 )
 
 cursor = db.cursor()

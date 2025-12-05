@@ -200,3 +200,4 @@ def update_user(user_id):
     cursor.close()
     flash('Edit Successful!')
     return redirect(url_for('admin'))
+#practising branching

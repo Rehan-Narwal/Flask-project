@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
 
 app = Flask(__name__)
-# Debug setting set to true 
+# This is the version from conflict-test branch
 app.secret_key = "Success"
 app.debug = True
 
